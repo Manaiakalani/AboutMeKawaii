@@ -233,13 +233,24 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===== KAWAII NOTIFICATION SYSTEM =====
     function showKawaiiNotification(message) {
         const notification = document.createElement('div');
-        notification.innerHTML = `
-            <div style="display: flex; align-items: center; gap: 0.5rem;">
-                <span style="font-size: 1.2rem;">🌸</span>
-                <span>${message}</span>
-                <span style="font-size: 1.2rem;">🌸</span>
-            </div>
-        `;
+        const content = document.createElement('div');
+        content.style.cssText = 'display: flex; align-items: center; gap: 0.5rem;';
+
+        const leftFlower = document.createElement('span');
+        leftFlower.style.fontSize = '1.2rem';
+        leftFlower.textContent = '🌸';
+
+        const messageSpan = document.createElement('span');
+        messageSpan.textContent = message;
+
+        const rightFlower = document.createElement('span');
+        rightFlower.style.fontSize = '1.2rem';
+        rightFlower.textContent = '🌸';
+
+        content.appendChild(leftFlower);
+        content.appendChild(messageSpan);
+        content.appendChild(rightFlower);
+        notification.appendChild(content);
         notification.style.cssText = `
             position: fixed;
             top: 50%;
