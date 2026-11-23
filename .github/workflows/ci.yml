@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate static site
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      # The site is HTML, CSS, and script.js. There is no install, lint, typecheck, test, or build script.
+      - name: Check JavaScript syntax
+        run: node --check script.js
+
+      - name: Check static entry files
+        run: |
+          test -s index.html
+          test -s styles.css
+          test -s script.js
+          grep -F -q 'href="styles.css"' index.html
+          grep -F -q 'src="script.js"' index.html

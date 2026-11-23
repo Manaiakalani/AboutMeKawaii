@@ -1,0 +1,8 @@
+# Weekly version updates for GitHub Actions used by this repo.
+# There is no package manifest, so only the github-actions ecosystem is listed.
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
